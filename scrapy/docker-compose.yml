@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  positions:
+    build:
+      context: .
+    container_name: positions
+#    use to debug the command below:
+#    command: scrapy crawl ae
+#    use to store parsed data as CSV file:
+#    command: scrapy crawl ae -o result.csv
+#    use to store parsed data as JSON file:
+    command: scrapy crawl ae -o result.json
+    volumes:
+      - .:/opt/proj
+      - temp-volume:/opt/proj/files
+    ports:
+      - "8088:8000"
+
+volumes:
+  temp-volume:
